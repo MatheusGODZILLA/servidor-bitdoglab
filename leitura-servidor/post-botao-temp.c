@@ -8,13 +8,13 @@
 #include "lwip/tcp.h"
 
 // Definições de Wi-Fi
-#define WIFI_SSID "MAMBEE"
-#define WIFI_PASSWORD "1fp1mamb33"
+#define WIFI_SSID ""
+#define WIFI_PASSWORD ""
 
 #define BUTTON_A 5
 
 // IP do servidor (ajuste conforme sua rede)
-#define SERVER_IP "192.168.1.75"
+#define SERVER_IP ""
 #define SERVER_PORT 3000
 
 volatile bool button_a_status = true;
