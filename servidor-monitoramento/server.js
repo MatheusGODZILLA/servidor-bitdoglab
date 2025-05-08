@@ -18,19 +18,24 @@ function getLocalIP() {
 let statusAtual = {
   botao: "desconhecido",
   temperatura: null,
+  joystick: {
+    x: 0,
+    y: 0,
+  }
 };
 
 app.use(express.json());
 app.use(express.static("public"));
 
-// POST /update — a plaquinha envia dados aqui
 app.post("/update", (req, res) => {
-  console.log("Corpo recebido brabo:", req.body);
+  console.log("Corpo recebido:", req.body);
 
   try {
     const dados = req.body;
     statusAtual.botao = dados.botao || "desconhecido";
     statusAtual.temperatura = parseFloat(dados.temperatura) || null;
+    statusAtual.joystick.x = parseInt(dados.joystick.x) || 0;
+    statusAtual.joystick.y = parseInt(dados.joystick.y) || 0;
     console.log("Status atualizado:", statusAtual);
     res.send("OK");
   } catch (err) {
@@ -39,7 +44,6 @@ app.post("/update", (req, res) => {
   }
 });
 
-// GET /status — o navegador busca os dados aqui
 app.get("/status", (req, res) => {
   res.json(statusAtual);
 });
