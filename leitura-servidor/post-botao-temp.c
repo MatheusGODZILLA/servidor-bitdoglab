@@ -8,17 +8,19 @@
 #include "lwip/tcp.h"
 
 // Definições de Wi-Fi
-#define WIFI_SSID ""
-#define WIFI_PASSWORD ""
+#define WIFI_SSID "MAMBEE"
+#define WIFI_PASSWORD "1fp1mamb33"
 
 #define BUTTON_A 5
 
 // IP do servidor (ajuste conforme sua rede)
-#define SERVER_IP ""
+#define SERVER_IP "192.168.1.75"
 #define SERVER_PORT 3000
 
 volatile bool button_a_status = true;
 volatile float temperature = 0.0f;
+volatile uint16_t joystick_x = 0;
+volatile uint16_t joystick_y = 0;
 
 // Callback para quando o servidor envia uma resposta
 err_t post_response(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err) {
@@ -50,9 +52,10 @@ static void enviar_post_para_servidor() {
 
     char json[128];
     snprintf(json, sizeof(json),
-             "{\"botao\":\"%s\",\"temperatura\":%.2f}",
+             "{\"botao\":\"%s\",\"temperatura\":%.2f,\"joystick\":{\"x\":%d,\"y\":%d}}",
              button_a_status ? "solto" : "pressionado",
-             temperature);
+             temperature,
+             joystick_x, joystick_y);
 
     char requisicao[512];
     snprintf(requisicao, sizeof(requisicao),
@@ -105,6 +108,9 @@ int main() {
 
     adc_init();
     adc_set_temp_sensor_enabled(true);
+    adc_gpio_init(26); // Y
+    adc_gpio_init(27); // X
+
 
     while (true) {
         cyw43_arch_poll();
@@ -117,6 +123,15 @@ int main() {
         uint16_t raw = adc_read();
         const float conversion = 3.3f / (1 << 12);
         temperature = 27.0f - ((raw * conversion) - 0.706f) / 0.001721f;
+
+        // Lê joystick
+        adc_select_input(1); // Canal 1 → X
+        int raw_x = adc_read();
+        joystick_x = ((int)raw_x - 2048 * 100 / 2048);
+
+        adc_select_input(0); // Canal 0 → Y
+        int raw_y = adc_read();
+        joystick_y = ((int)raw_y - 2048 * 100 / 2048);
 
         enviar_post_para_servidor();
 
