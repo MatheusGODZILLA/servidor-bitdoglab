@@ -16,32 +16,33 @@ function getLocalIP() {
 }
 
 function calcularDirecao(x, y) {
-  const limiar = 30;
+  const zonaMorta = 15;
+  const magnitude = Math.sqrt(x * x + y * y);
+  if (magnitude < zonaMorta) return "Centro";
 
-  if (Math.abs(x) < limiar && Math.abs(y) < limiar) return "Centro";
+  const anguloRad = Math.atan2(y, x);
+  const anguloGraus = (anguloRad * 180 / Math.PI + 360) % 360;
 
-  if (y >= limiar && Math.abs(x) < limiar) return "Norte";
-  if (y <= -limiar && Math.abs(x) < limiar) return "Sul";
-  if (x >= limiar && Math.abs(y) < limiar) return "Leste";
-  if (x <= -limiar && Math.abs(y) < limiar) return "Oeste";
-
-  if (x >= limiar && y >= limiar) return "Nordeste";
-  if (x <= -limiar && y >= limiar) return "Noroeste";
-  if (x >= limiar && y <= -limiar) return "Sudeste";
-  if (x <= -limiar && y <= -limiar) return "Sudoeste";
+  if (anguloGraus >= 337.5 || anguloGraus < 22.5) return "Leste";
+  if (anguloGraus >= 22.5 && anguloGraus < 67.5) return "Nordeste";
+  if (anguloGraus >= 67.5 && anguloGraus < 112.5) return "Norte";
+  if (anguloGraus >= 112.5 && anguloGraus < 157.5) return "Noroeste";
+  if (anguloGraus >= 157.5 && anguloGraus < 202.5) return "Oeste";
+  if (anguloGraus >= 202.5 && anguloGraus < 247.5) return "Sudoeste";
+  if (anguloGraus >= 247.5 && anguloGraus < 292.5) return "Sul";
+  if (anguloGraus >= 292.5 && anguloGraus < 337.5) return "Sudeste";
 
   return "Indefinido";
 }
 
-
 let statusAtual = {
-  botao: "desconhecido",
-  temperatura: null,
-  joystick: {
-    x: 0,
-    y: 0,
-  },
-  direcao: "Indefinido"
+    botao: "desconhecido",
+    temperatura: null,
+    joystick: {
+        x: 0,
+        y: 0,
+    },
+    direcao: "Centro"
 };
 
 app.use(express.json());
