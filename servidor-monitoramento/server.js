@@ -16,7 +16,7 @@ function getLocalIP() {
 }
 
 function calcularDirecao(x, y) {
-  const zonaMorta = 15;
+  const zonaMorta = 25;
   const magnitude = Math.sqrt(x * x + y * y);
   if (magnitude < zonaMorta) return "Centro";
 
