@@ -1,6 +1,6 @@
 ## 📡 BitDogLab - Monitoramento com IoT
 
-Este projeto foi desenvolvido como parte da **Tarefa Prática da Unidade 2 de IoT** do curso de Análise e Desenvolvimento de Sistemas no **Instituto Federal do Piauí – Campus Picos**.
+Este projeto foi desenvolvido como parte da **Tarefa Prática da Unidade 2 de IoT** da Residência Tecnológica EmbarcaTech.
 
 O sistema realiza o monitoramento em tempo real dos sensores da placa **BitDogLab**, utilizando Wi-Fi para enviar os dados a um servidor local implementado com **Node.js e Express**, com exibição visual em uma interface web.
 
