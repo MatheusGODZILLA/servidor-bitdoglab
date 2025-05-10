@@ -8,13 +8,13 @@
 #include "lwip/tcp.h"
 
 // Definições de Wi-Fi
-#define WIFI_SSID ""
-#define WIFI_PASSWORD ""
+#define WIFI_SSID "MAMBEE"
+#define WIFI_PASSWORD "1fp1mamb33"
 
 #define BUTTON_A 5
 
 // IP do servidor (ajuste conforme sua rede)
-#define SERVER_IP ""
+#define SERVER_IP "192.168.1.75"
 #define SERVER_PORT 3000
 
 volatile bool button_a_status = true;
@@ -33,7 +33,7 @@ err_t post_response(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err) {
     return ERR_OK;
 }
 
-static void enviar_post_para_servidor() {
+static void post_server() {
     struct tcp_pcb *pcb = tcp_new();
     if (!pcb) {
         printf("Erro ao criar PCB TCP\n");
@@ -124,16 +124,17 @@ int main() {
         const float conversion = 3.3f / (1 << 12);
         temperature = 27.0f - ((raw * conversion) - 0.706f) / 0.001721f;
 
-        // Lê joystick
-        adc_select_input(1); // Canal 1 → X
+        // Lê joystick X
+        adc_select_input(1);
         int raw_x = adc_read();
-        joystick_x = ((int)raw_x - 2048 * 100 / 2048);
+        joystick_x = ((raw_x - 2048) * 100) / 2048;
 
-        adc_select_input(0); // Canal 0 → Y
+        // Lê joystick Y
+        adc_select_input(0);
         int raw_y = adc_read();
-        joystick_y = ((int)raw_y - 2048 * 100 / 2048);
+        joystick_y = ((raw_y - 2048) * 100) / 2048;
 
-        enviar_post_para_servidor();
+        post_server();
 
         sleep_ms(1000);
     }
