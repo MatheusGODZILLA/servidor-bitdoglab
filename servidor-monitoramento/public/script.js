@@ -9,6 +9,7 @@ async function buscarStatus() {
         dados.temperatura !== null ? dados.temperatura.toFixed(2) : "Desconhecida";
       document.getElementById("joystick-x").textContent = dados.joystick?.x ?? "N/A";
       document.getElementById("joystick-y").textContent = dados.joystick?.y ?? "N/A";
+      document.getElementById("direcao").textContent = dados.direcao || "Indefinido";
 
     } catch (erro) {
       console.error("Erro ao buscar dados:", erro);

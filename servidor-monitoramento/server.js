@@ -15,13 +15,33 @@ function getLocalIP() {
   return "localhost";
 }
 
+function calcularDirecao(x, y) {
+  const limiar = 30;
+
+  if (Math.abs(x) < limiar && Math.abs(y) < limiar) return "Centro";
+
+  if (y >= limiar && Math.abs(x) < limiar) return "Norte";
+  if (y <= -limiar && Math.abs(x) < limiar) return "Sul";
+  if (x >= limiar && Math.abs(y) < limiar) return "Leste";
+  if (x <= -limiar && Math.abs(y) < limiar) return "Oeste";
+
+  if (x >= limiar && y >= limiar) return "Nordeste";
+  if (x <= -limiar && y >= limiar) return "Noroeste";
+  if (x >= limiar && y <= -limiar) return "Sudeste";
+  if (x <= -limiar && y <= -limiar) return "Sudoeste";
+
+  return "Indefinido";
+}
+
+
 let statusAtual = {
   botao: "desconhecido",
   temperatura: null,
   joystick: {
     x: 0,
     y: 0,
-  }
+  },
+  direcao: "Indefinido"
 };
 
 app.use(express.json());
@@ -36,6 +56,8 @@ app.post("/update", (req, res) => {
     statusAtual.temperatura = parseFloat(dados.temperatura) || null;
     statusAtual.joystick.x = parseInt(dados.joystick.x) || 0;
     statusAtual.joystick.y = parseInt(dados.joystick.y) || 0;
+    statusAtual.direcao = calcularDirecao(statusAtual.joystick.x, statusAtual.joystick.y);
+
     console.log("Status atualizado:", statusAtual);
     res.send("OK");
   } catch (err) {
