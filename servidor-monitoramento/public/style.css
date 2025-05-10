@@ -1,6 +1,6 @@
 body {
   font-family: "Segoe UI", sans-serif;
-  background-color: #eef1f6;
+  background-color: #f7f9fc;
   margin: 0;
   padding: 0;
 }
@@ -10,16 +10,16 @@ body {
   margin: auto;
   margin-top: 25px;
   padding: 20px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
   text-align: center;
 }
 
 h1 {
   margin-bottom: 30px;
   font-size: 2.2rem;
-  color: #222;
+  color: #2d3748; 
 }
 
 .grid {
@@ -31,50 +31,50 @@ h1 {
 
 .card {
   flex: 1 1 320px;
-  background-color: #fefefe;
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   text-align: left;
   transition: transform 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
 }
 
 .card h2 {
   margin-top: 0;
-  color: #0077cc;
+  color: #0077cc; 
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
 span {
   font-weight: bold;
-  color: #333;
+  color: #4a5568; 
 }
 
-/* Status visual do botão */
 #botao {
-  padding: 4px 10px;
-  border-radius: 6px;
-  background-color: #ddd;
-  color: #000;
-  transition: all 0.2s ease;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #2d3748;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid #d1d5db; 
 }
 
 #botao:contains("pressionado") {
-  background-color: #d9534f;
+  background-color: #e53e3e; 
   color: white;
 }
 
 #botao:contains("solto") {
-  background-color: #5cb85c;
+  background-color: #38a169; 
   color: white;
 }
 
-/* Rosa dos Ventos */
 #rosa-circulos {
   position: relative;
   width: 220px;
@@ -85,7 +85,7 @@ span {
 .circulo {
   width: 42px;
   height: 42px;
-  background-color: #ccc;
+  background-color: #edf2f7;
   border-radius: 50%;
   line-height: 42px;
   text-align: center;
@@ -97,11 +97,10 @@ span {
 }
 
 .circulo:hover {
-  background-color: #999;
+  background-color: #d1d5db;
   color: white;
 }
 
-/* Posicionamento */
 #norte { top: 0; left: 50%; transform: translateX(-50%); }
 #sul { bottom: 0; left: 50%; transform: translateX(-50%); }
 #leste { right: 0; top: 50%; transform: translateY(-50%); }
@@ -116,13 +115,13 @@ span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #eaeaea;
+  background-color: #e2e8f0;
 }
 
 .circulo.ativo {
-  background-color: #28a745;
+  background-color: #38a169;
   color: white;
-  box-shadow: 0 0 8px #28a74566;
+  box-shadow: 0 0 8px #38a16966;
 }
 
 /* Responsividade */
