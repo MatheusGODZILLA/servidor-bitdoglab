@@ -9,30 +9,38 @@
 <body>
   <div class="container">
     <h1>Status da BitDogLab</h1>
-    <div class="card">
-      <p><strong>Botão A:</strong> <span id="botao">Carregando...</span></p>
-      <p><strong>Temperatura:</strong> <span id="temperatura">Carregando...</span> &deg;C</p>
-    </div>
+    <div class="grid">
+      <!-- Bloco 1: Status -->
+      <div class="card status-card">
+        <h2>Status</h2>
+        <p><strong>Botão A:</strong> <span id="botao">Carregando...</span></p>
+        <p><strong>Temperatura:</strong> <span id="temperatura">Carregando...</span> &deg;C</p>
 
-    <h2>Joystick</h2>
-    <p>X: <span id="joystick-x">-</span></p>
-    <p>Y: <span id="joystick-y">-</span></p>
+        <h2>Joystick</h2>
+        <p>X: <span id="joystick-x">-</span></p>
+        <p>Y: <span id="joystick-y">-</span></p>
+      </div>
 
-    <h2>Rosa dos Ventos</h2>
-    <p>Direção: <strong id="direcao">-</strong></p>
-    <div id="rosa-circulos">
-      <div class="circulo" id="norte">N</div>
-      <div class="circulo" id="nordeste">NE</div>
-      <div class="circulo" id="leste">L</div>
-      <div class="circulo" id="sudeste">SE</div>
-      <div class="circulo" id="sul">S</div>
-      <div class="circulo" id="sudoeste">SO</div>
-      <div class="circulo" id="oeste">O</div>
-      <div class="circulo" id="noroeste">NO</div>
-      <div class="circulo centro" id="centro">•</div>
+      <!-- Bloco 2: Joystick + Rosa dos Ventos -->
+      <div class="card joystick-card">
+        <h2>Rosa dos Ventos</h2>
+        <p>Direção: <strong id="direcao">-</strong></p>
+        <div id="rosa-circulos">
+          <div class="circulo" id="norte">N</div>
+          <div class="circulo" id="nordeste">NE</div>
+          <div class="circulo" id="leste">L</div>
+          <div class="circulo" id="sudeste">SE</div>
+          <div class="circulo" id="sul">S</div>
+          <div class="circulo" id="sudoeste">SO</div>
+          <div class="circulo" id="oeste">O</div>
+          <div class="circulo" id="noroeste">NO</div>
+          <div class="circulo centro" id="centro">•</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
