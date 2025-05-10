@@ -1,3 +1,11 @@
+function atualizarBotao(status) {
+  const el = document.getElementById("botao");
+  el.textContent = status;
+
+  el.style.backgroundColor = status === "pressionado" ? "#d9534f" : "#5cb85c";
+  el.style.color = "white";
+}
+
 const direcoesParaAngulo = {
   "Norte": 0,
   "Nordeste": 45,
@@ -48,7 +56,7 @@ async function buscarStatus() {
       if (!resposta.ok) throw new Error("Erro na requisição");
   
       const dados = await resposta.json();
-      document.getElementById("botao").textContent = dados.botao;
+      atualizarBotao(dados.botao);
       document.getElementById("temperatura").textContent =
         dados.temperatura !== null ? dados.temperatura.toFixed(2) : "Desconhecida";
       document.getElementById("joystick-x").textContent = dados.joystick?.x ?? "N/A";
