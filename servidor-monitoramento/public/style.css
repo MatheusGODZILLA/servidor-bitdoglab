@@ -1,24 +1,25 @@
 body {
   font-family: "Segoe UI", sans-serif;
-  background-color: #f4f6f9;
+  background-color: #eef1f6;
   margin: 0;
   padding: 0;
 }
 
 .container {
   max-width: 1000px;
-  margin: 40px auto;
+  margin: auto;
+  margin-top: 25px;
   padding: 20px;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
 h1 {
   margin-bottom: 30px;
-  font-size: 2rem;
-  color: #333;
+  font-size: 2.2rem;
+  color: #222;
 }
 
 .grid {
@@ -29,45 +30,78 @@ h1 {
 }
 
 .card {
-  flex: 1 1 300px;
-  background-color: #fdfdfd;
+  flex: 1 1 320px;
+  background-color: #fefefe;
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
   text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
 }
 
 .card h2 {
   margin-top: 0;
   color: #0077cc;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
 span {
   font-weight: bold;
-  color: #444;
+  color: #333;
+}
+
+/* Status visual do botão */
+#botao {
+  padding: 4px 10px;
+  border-radius: 6px;
+  background-color: #ddd;
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+#botao:contains("pressionado") {
+  background-color: #d9534f;
+  color: white;
+}
+
+#botao:contains("solto") {
+  background-color: #5cb85c;
+  color: white;
 }
 
 /* Rosa dos Ventos */
 #rosa-circulos {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   margin: 30px auto;
 }
 
 .circulo {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   background-color: #ccc;
   border-radius: 50%;
-  line-height: 40px;
+  line-height: 42px;
   text-align: center;
   font-weight: bold;
   position: absolute;
-  transition: background-color 0.3s ease;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: default;
 }
 
+.circulo:hover {
+  background-color: #999;
+  color: white;
+}
+
+/* Posicionamento */
 #norte { top: 0; left: 50%; transform: translateX(-50%); }
 #sul { bottom: 0; left: 50%; transform: translateX(-50%); }
 #leste { right: 0; top: 50%; transform: translateY(-50%); }
@@ -82,12 +116,13 @@ span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #eee;
+  background-color: #eaeaea;
 }
 
 .circulo.ativo {
   background-color: #28a745;
   color: white;
+  box-shadow: 0 0 8px #28a74566;
 }
 
 /* Responsividade */
