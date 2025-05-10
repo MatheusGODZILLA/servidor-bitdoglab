@@ -8,19 +8,19 @@
 #include "lwip/tcp.h"
 
 // Definições de Wi-Fi
-#define WIFI_SSID "MAMBEE"
-#define WIFI_PASSWORD "1fp1mamb33"
+#define WIFI_SSID ""
+#define WIFI_PASSWORD ""
 
 #define BUTTON_A 5
 
 // IP do servidor (ajuste conforme sua rede)
-#define SERVER_IP "192.168.1.75"
+#define SERVER_IP ""
 #define SERVER_PORT 3000
 
 volatile bool button_a_status = true;
 volatile float temperature = 0.0f;
-volatile uint16_t joystick_x = 0;
-volatile uint16_t joystick_y = 0;
+volatile int16_t joystick_x = 0;
+volatile int16_t joystick_y = 0;
 
 // Callback para quando o servidor envia uma resposta
 err_t post_response(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err) {
@@ -133,6 +133,13 @@ int main() {
         adc_select_input(0);
         int raw_y = adc_read();
         joystick_y = ((raw_y - 2048) * 100) / 2048;
+
+        if (joystick_x > 100) joystick_x = 100;
+        if (joystick_x < -100) joystick_x = -100;
+
+        if (joystick_y > 100) joystick_y = 100;
+        if (joystick_y < -100) joystick_y = -100;
+
 
         post_server();
 
